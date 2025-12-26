@@ -4240,7 +4240,7 @@ void CFG_Setup(int argc, char **argv)
 	}
 	// load unifont
 	char fname[200];
-	char * dbl = ((strlen(CFG.db_language) == 2) ? VerifyLangCode(CFG.db_language) : ConvertLangTextToCode(CFG.db_language));
+	char * dbl = UnifyToDBCode(CFG.db_language);
 	if ((!strncmp(CFG.translation,"JA",2))
 	  ||(!strncmp(CFG.translation,"KO",2))
 	  ||(!strncmp(CFG.translation,"ZH",2))
@@ -4255,7 +4255,7 @@ void CFG_Setup(int argc, char **argv)
 	get_time(&TIME.misc2);
 	// load database
 	get_time(&TIME.wiitdb1);
-	ReloadXMLDatabase(USBLOADER_PATH, CFG.db_language, 0);
+	ReloadXMLDatabase(USBLOADER_PATH, dbl, 0);
 	get_time(&TIME.wiitdb2);
 	cfg_debug(argc, argv);
 }
